@@ -9,7 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MoviesPage implements OnInit {
   movies: Movie[] = [];
-  
+
   constructor(private movieService: MovieService) {}
   ngOnInit() {
     this.movieService.getPopularMovies().subscribe((response) => {

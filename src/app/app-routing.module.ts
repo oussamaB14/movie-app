@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sginin/sginin.module').then( m => m.SgininPageModule)
   },
   {
-    path: 'movie-details',
+    path: 'movie/:id',
     loadChildren: () => import('./pages/movie-details/movie-details.module').then( m => m.MovieDetailsPageModule)
   }
 ];
