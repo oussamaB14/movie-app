@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'sginin',
     loadChildren: () => import('./pages/sginin/sginin.module').then( m => m.SgininPageModule)
+  },
+  {
+    path: 'movie-details',
+    loadChildren: () => import('./pages/movie-details/movie-details.module').then( m => m.MovieDetailsPageModule)
   }
 ];
 @NgModule({
