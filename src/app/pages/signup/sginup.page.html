@@ -20,14 +20,28 @@
     </ion-row> -->
     <ion-row>
       <ion-col size="12">
-    <ion-row class="ion-justify-content-center" style="margin-top: 20px; margin-bottom: 10px;">
-        <ion-avatar style="background-color: gray;">
-            <img alt="Silhouette of a person's head" src="https://static-00.iconduck.com/assets.00/camera-icon-512x512-928ovg7x.png" />
-        </ion-avatar>
-    </ion-row>
+        <ion-row
+          class="ion-justify-content-center"
+          style="margin-top: 20px; margin-bottom: 10px"
+          ><ion-button expand="block" (click)="capturePhoto()">
+            <ion-avatar style="background-color: gray">
+              <img
+                *ngIf="photoURL; else defaultImage"
+                [src]="photoURL"
+                alt="User's photo"
+              />
+              <ng-template #defaultImage>
+                <img
+                  alt="Silhouette of a person's head"
+                  src="https://static-00.iconduck.com/assets.00/camera-icon-512x512-928ovg7x.png"
+                />
+              </ng-template>
+            </ion-avatar>
+          </ion-button>
+        </ion-row>
         <ion-item>
           <ion-label position="floating">Name</ion-label>
-          <ion-input type="text" ></ion-input>
+          <ion-input type="text" [(ngModel)]="name"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -35,7 +49,7 @@
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Age</ion-label>
-          <ion-input type="number"></ion-input>
+          <ion-input type="number" [(ngModel)]="age"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -43,7 +57,7 @@
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" ></ion-input>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -51,7 +65,7 @@
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -72,7 +86,7 @@
     </ion-row> -->
     <ion-row>
       <ion-col size="12">
-        <ion-button expand="block" (click)="onSubmit()">Sginup</ion-button>
+        <ion-button expand="block" (click)="register()">Sginup</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

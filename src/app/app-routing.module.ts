@@ -7,12 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'sginup',
-    loadChildren: () => import('./pages/sginup/sginup.module').then( m => m.SginupPageModule)
+    path: 'signup',
+    loadChildren: () => import('./pages/signup/sginup.module').then( m => m.SginupPageModule)
   },
   {
-    path: 'sginin',
-    loadChildren: () => import('./pages/sginin/sginin.module').then( m => m.SgininPageModule)
+    path: 'signin',
+    loadChildren: () => import('./pages/signin/sginin.module').then( m => m.SgininPageModule)
   },
   {
     path: 'movie/:id',

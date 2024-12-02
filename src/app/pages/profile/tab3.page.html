@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title> Profile </ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content *ngIf="!isLoading">
+  <ion-card *ngIf="currentUser; else noUser">
+    <ion-card-header>
+      <ion-card-title>Welcome, {{ currentUser.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ currentUser.email }}</p>
+      <p><strong>Age:</strong> {{ currentUser.age }}</p>
+      <div *ngIf="currentUser.photoURL">
+        <p><strong>Profile Photo:</strong></p>
+        <img [src]="currentUser.photoURL" alt="Profile Photo" style="width: 100px; height: 100px; border-radius: 50%;" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #noUser>
+    <ion-text color="danger">
+      <h3>No user data found. Please log in.</h3>
+    </ion-text>
+  </ng-template>
+</ion-content>
+
+<ion-content *ngIf="isLoading">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
+      <ion-title>Toolbar</ion-title>
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
     </ion-toolbar>
   </ion-header>
 </ion-content>
