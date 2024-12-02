@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +23,10 @@ import { AngularFireModule } from '@angular/fire/compat';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -10,4 +10,20 @@
       <ion-title size="large">Movies</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card *ngFor="let movie of movies">
+          <ion-img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle>{{ movie.release_date | date: 'dd/MM/yyyy' }}</ion-card-subtitle>
+            <ion-card-title>{{ movie.title }}</ion-card-title>
+          </ion-card-header>
+          <!-- <ion-card-content>
+            {{ movie.overview | slice:0:200 }}...
+          </ion-card-content> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

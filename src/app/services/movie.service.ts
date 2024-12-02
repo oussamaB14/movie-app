@@ -15,7 +15,7 @@ export class MovieService {
   constructor(private http: HttpClient,
     private firestore: AngularFirestore,
     private authService: AuthService) { }
-    getPopularMovies(): Observable<Movie[]> {
+    getPopularMovies(): Observable<any> {
       return this.http.get<Movie[]>(`${constants.TMDB_API_URL}/movie/popular?api_key=${constants.TMDB_API_KEY}`);
     }
     getMovieDetails(movieId: string): Observable<Movie> {
