@@ -1,6 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="present-alert">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+      <ion-alert
+        trigger="present-alert"
+        header="Are you sure you want to logout !"
+        [buttons]="alertButtons"
+      ></ion-alert>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +24,11 @@
       <p><strong>Age:</strong> {{ currentUser.age }}</p>
       <div *ngIf="currentUser.photoURL">
         <p><strong>Profile Photo:</strong></p>
-        <img [src]="currentUser.photoURL" alt="Profile Photo" style="width: 100px; height: 100px; border-radius: 50%;" />
+        <img
+          [src]="currentUser.photoURL"
+          alt="Profile Photo"
+          style="width: 100px; height: 100px; border-radius: 50%"
+        />
       </div>
     </ion-card-content>
   </ion-card>

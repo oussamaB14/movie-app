@@ -25,4 +25,27 @@ export class ProfilePage implements OnInit {
       }
     );
   }
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        this.logout();
+        console.log('Alert confirmed');
+      },
+    },
+  ];
+
+
+  logout() {
+    this.authService.logout();
+    window.location.href = '/signin';
+  }
 }
