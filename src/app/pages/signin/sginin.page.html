@@ -1,13 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sginin</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sginin</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <ion-grid
+    style="
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Sgin In</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating" required>Email</ion-label>
+                <ion-input
+                  type="email"
+                  [(ngModel)]="email"
+                  required
+                ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating" required>Email</ion-label>
+                <ion-input
+                  type="email"
+                  [(ngModel)]="email"
+                  #emailInput="ngModel"
+                  required
+                ></ion-input>
+                <div
+                  *ngIf="emailInput.invalid && emailInput.touched"
+                  style="color: red; font-size: 12px"
+                >
+                  Please enter a valid email.
+                </div>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating" required>Password</ion-label>
+                <ion-input
+                  type="password"
+                  [(ngModel)]="password"
+                  #passwordInput="ngModel"
+                  required
+                ></ion-input>
+                <div
+                  *ngIf="passwordInput.invalid && passwordInput.touched"
+                  style="color: red; font-size: 12px"
+                >
+                  Password is required.
+                </div>
+              </ion-item>
+            </ion-list>
+            <ion-button expand="block" (click)="signin()">Sign In</ion-button>
+            <p style="text-align: center">
+              Don't have an account?
+              <a routerLink="/signup">Sign Up</a>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid></ion-content
+>

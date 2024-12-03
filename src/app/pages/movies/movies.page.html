@@ -10,13 +10,25 @@
       <ion-title size="large">Movies</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-col size="18" class="ion-text-center" >
+    <h1><strong>Discover popular movies 🎥</strong></h1>
+  </ion-col>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" size-md="6" size-lg="4" *ngFor="let movie of movies; let i = index">
+      <ion-col
+        size="6"
+        size-md="6"
+        size-lg="4"
+        *ngFor="let movie of movies; let i = index"
+      >
         <ion-card [routerLink]="['/movie', movie.id]">
-          <ion-img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"></ion-img>
+          <ion-img
+            src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+          ></ion-img>
           <ion-card-header>
-            <ion-card-subtitle>{{ movie.release_date | date: 'dd/MM/yyyy' }}</ion-card-subtitle>
+            <ion-card-subtitle
+              >{{ movie.release_date | date: 'dd/MM/yyyy' }}</ion-card-subtitle
+            >
             <ion-card-title>{{ movie.title }}</ion-card-title>
             <!-- <ion-card-title>
               {{ (movie.title.length > 15) ? movie.title.slice(0, 12) + '...' : movie.title }}
