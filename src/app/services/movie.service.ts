@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 import { constants } from '../utils/constants';
 import firebase from 'firebase/compat/app';
@@ -42,6 +42,29 @@ export class MovieService {
         throw error;
       });
   }
+  toggleFavorite(userId: string, movieId: number, isFavorite: boolean): Promise<void> {
+    return this.firestore
+      .collection('users')
+      .doc(userId)
+      .update({
+        favorites: isFavorite
+          ? firebase.firestore.FieldValue.arrayRemove(movieId)
+          : firebase.firestore.FieldValue.arrayUnion(movieId),
+      })
+      .then(() => {
+        console.log(
+          `Movie ${isFavorite ? 'removed from' : 'added to'} favorites successfully!`
+        );
+      })
+      .catch((error) => {
+        console.error(
+          `Error ${isFavorite ? 'removing movie from' : 'adding movie to'} favorites:`,
+          error
+        );
+        throw error;
+      });
+  }
+  
 
   // removeFromFavorites(userId: string, movieId: string) {
   //   return this.firestore
@@ -82,5 +105,14 @@ export class MovieService {
     const union = new Set([...userFavorites, ...otherUserFavorites]);
     return (intersection.length / union.size) * 100;
   }
-
+  getUserFavorites(userId: string): Observable<number[]> {
+    return this.firestore
+      .collection('users')
+      .doc(userId)
+      .valueChanges()
+      .pipe(
+        map((userData: any) => userData?.favorites || [])
+      );
+  }
+  
 }

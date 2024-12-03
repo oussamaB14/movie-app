@@ -6,6 +6,6 @@ export interface User {
     email: string;
     age: number;
     photoURL: string;
-    favorites: Movie[];
+    favorites: number[];
     isAdmin?: boolean; 
   }

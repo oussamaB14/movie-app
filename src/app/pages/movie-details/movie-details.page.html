@@ -5,10 +5,13 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="addToWatchlist(movieDetails)">
-        <ion-icon name="bookmark-outline"></ion-icon
-      ></ion-button>
+      <ion-button (click)="toggleFavorite(movieDetails.id)">
+        <ion-icon
+          [name]="isFavorite(movieDetails.id) ? 'bookmark' : 'bookmark-outline'"
+        ></ion-icon>
+      </ion-button>
     </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 

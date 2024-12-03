@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>WatchList </ion-title>
+    <ion-title>Watchlist</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">WatchList</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+  <ion-list *ngIf="!isLoading && favoriteMovies.length > 0">
+    <ion-item *ngFor="let movie of favoriteMovies">
+      <ion-thumbnail slot="start">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.release_date | date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-text *ngIf="!isLoading && favoriteMovies.length === 0">
+    <p>You don't have any favorite movies yet.</p>
+  </ion-text>
 </ion-content>
