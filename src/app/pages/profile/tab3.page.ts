@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatchingService } from 'src/app/services/matching.service';
 
 @Component({
   selector: 'app-tab3',
@@ -10,13 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProfilePage implements OnInit {
   currentUser: User | null = null; // Store the user data
   isLoading: boolean = true; // Show a loading state
-
-  constructor(private authService: AuthService) {}
+  matchingUsers: any[] = [];
+  constructor(
+    private authService: AuthService,
+    private matchingService: MatchingService
+  ) {}
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(
       (user) => {
-        this.currentUser = user; // Assign user data to `currentUser`
+        this.currentUser = user; // Assign user data to currentUser
         this.isLoading = false; // Loading completed
       },
       (error) => {
@@ -24,6 +28,7 @@ export class ProfilePage implements OnInit {
         this.isLoading = false;
       }
     );
+    this.loadMatchingUsers();
   }
   public alertButtons = [
     {
@@ -43,9 +48,17 @@ export class ProfilePage implements OnInit {
     },
   ];
 
-
   logout() {
     this.authService.logout();
     window.location.href = '/signin';
+  }
+  async loadMatchingUsers() {
+    try {
+      this.matchingUsers = await this.matchingService.getMatchingUsers();
+    } catch (error) {
+      console.error('Error fetching matching users:', error);
+    } finally {
+      this.isLoading = false;
+    }
   }
 }

@@ -42,6 +42,21 @@
         >Users with similar movie taste 🔮</ion-label
       >
     </ion-list-header>
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+    <ion-list *ngIf="!isLoading && matchingUsers.length > 0">
+      <ion-item *ngFor="let user of matchingUsers">
+        <ion-label>
+          <h2>User ID: {{ user.id }}</h2>
+          <p>Match Rate: {{ user.matchRate | number: '1.0-2' }}%</p>
+          <p>Shared Favorites: {{ user.favorites.join(', ') }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-text *ngIf="!isLoading && matchingUsers.length === 0">
+      <p>No matching users found with a match rate above 75%.</p>
+    </ion-text>
     <!-- <ion-item *ngFor="let user of similarUsers">
       <ion-avatar slot="start">
         <img [src]="user.photoURL" />
@@ -53,6 +68,7 @@
   <ng-template #noUser>
     <ion-text color="danger">
       <h3>No user data found. Please log in.</h3>
+      <ion-button routerLink="/signin">signin</ion-button>
     </ion-text>
   </ng-template>
 </ion-content>

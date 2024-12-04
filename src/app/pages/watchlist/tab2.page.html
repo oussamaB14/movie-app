@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-spinner *ngIf="isLoading"></ion-spinner>
+  <ion-content *ngIf="isLoading">
+    <ion-header>
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </ion-header>
+  </ion-content>
 
   <ion-list *ngIf="!isLoading && favoriteMovies.length > 0">
     <ion-item *ngFor="let movie of favoriteMovies">
