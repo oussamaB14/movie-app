@@ -1,4 +1,3 @@
-import { Movie } from "./movie";
 
 export interface User {
     uid: string;
@@ -8,4 +7,5 @@ export interface User {
     photoURL: string;
     favorites: number[];
     isAdmin?: boolean; 
+    isDisabled?: boolean;
   }
